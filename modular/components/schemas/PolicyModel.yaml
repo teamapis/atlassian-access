@@ -1,0 +1,45 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+properties:
+  id:
+    type: string
+    description: Unique identifier of the Policy
+  type:
+    type: string
+    enum:
+      - policy
+    description: Type of this object
+  attributes:
+    type: object
+    description: Attributes of this object
+    required:
+      - type
+    properties:
+      type:
+        type: string
+        enum:
+          - ip-allowlist
+          - data-residency
+        description: Type of this Policy
+      name:
+        type: string
+        description: Name of this Policy
+      status:
+        type: string
+        enum:
+          - enabled
+          - disabled
+        description: Status of this Policy
+      rule:
+        type: object
+        description: Rule of the Policy
+        oneOf:
+          - $ref: ./AllowIfContainedRule.yaml
+      resources:
+        type: array
+        description: list of resources Policy is associated with
+        items:
+          $ref: ./Resource.yaml

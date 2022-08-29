@@ -1,0 +1,7 @@
+type: object
+required:
+  - alt
+properties:
+  alt:
+    type: string
+    description: Alternate URL to fetch this resource

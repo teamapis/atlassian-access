@@ -1,0 +1,14 @@
+type: object
+description: Policy Resource not found
+properties:
+  errors:
+    type: array
+    items:
+      allOf:
+        - $ref: ./ApplicationError.yaml
+        - type: object
+          properties:
+            code:
+              type: string
+              enum:
+                - ADMIN-404-6

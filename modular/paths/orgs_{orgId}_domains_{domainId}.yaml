@@ -1,0 +1,42 @@
+get:
+  tags:
+    - domains
+  operationId: getDomainById
+  summary: Get domain by ID
+  description: Returns information about a single verified domain by ID.
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the organization the domain belongs to
+      required: true
+      schema:
+        type: string
+    - name: domainId
+      in: path
+      description: ID of the domain to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Domain.yaml
+    '400':
+      $ref: ../components/responses/Error.InvalidDomainIdentifier.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '403':
+      $ref: ../components/responses/Error.NoPerms.yaml
+    '404':
+      description: Domain not found
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error.DomainNotFound.Model.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml

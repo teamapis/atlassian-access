@@ -1,0 +1,45 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+  - relationships
+  - links
+properties:
+  id:
+    type: string
+    description: Unique identifier of the Org
+  type:
+    type: string
+    enum:
+      - orgs
+    description: Type name of this object
+  attributes:
+    type: object
+    description: Attributes of this object
+    properties:
+      name:
+        type: string
+        description: Name of this Org
+  relationships:
+    type: object
+    description: Relationships of this object
+    properties:
+      domains:
+        type: object
+        description: Link to the related Domains of the Org
+        properties:
+          links:
+            type: object
+            $ref: ./LinkRelatedModel.yaml
+      users:
+        type: object
+        description: Link to the related Users of the Org
+        properties:
+          links:
+            type: object
+            $ref: ./LinkRelatedModel.yaml
+  links:
+    type: object
+    description: Link to this Org
+    $ref: ./LinkSelfModel.yaml

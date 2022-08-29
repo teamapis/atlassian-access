@@ -1,0 +1,17 @@
+type: object
+required:
+  - id
+properties:
+  id:
+    type: string
+    description: Id of the Actor
+  name:
+    type: string
+    description: The display name of the Actor.
+  email:
+    type: string
+    description: The email of the Actor.
+  links:
+    type: object
+    description: Link to this Actor
+    $ref: ./LinkSelfModel.yaml

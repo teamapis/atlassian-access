@@ -1,0 +1,5 @@
+description: Too many API requests
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ProxyError.yaml

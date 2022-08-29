@@ -1,0 +1,20 @@
+type: object
+required:
+  - id
+  - applicationStatus
+properties:
+  id:
+    type: string
+  applicationStatus:
+    type: string
+    description: Status of policy application on resource
+    enum:
+      - applying
+      - removing
+      - applied
+      - failed
+      - scheduled
+  meta:
+    $ref: ./Meta.yaml
+  links:
+    $ref: ./Links.yaml

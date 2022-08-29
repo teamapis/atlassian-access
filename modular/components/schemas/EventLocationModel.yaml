@@ -1,0 +1,18 @@
+type: object
+properties:
+  ip:
+    type: string
+    description: IP address
+  geo:
+    type: string
+    description: Geo location of the IP address
+    deprecated: true
+  countryName:
+    type: string
+    description: Country location according to the IP address
+  regionName:
+    type: string
+    description: Region location according to the IP address
+  city:
+    type: string
+    description: City location according to the IP address

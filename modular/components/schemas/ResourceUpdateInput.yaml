@@ -1,0 +1,6 @@
+type: object
+properties:
+  meta:
+    $ref: ./Meta.yaml
+  links:
+    $ref: ./Links.yaml

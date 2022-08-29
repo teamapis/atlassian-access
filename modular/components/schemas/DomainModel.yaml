@@ -1,0 +1,44 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+  - links
+properties:
+  id:
+    type: string
+    description: Unique identifier of the Domain
+  type:
+    type: string
+    description: Type name of this object
+    enum:
+      - domains
+  attributes:
+    type: object
+    description: Attributes of this object
+    properties:
+      name:
+        type: string
+        description: Domain Name
+      claim:
+        type: object
+        description: Claim for the domain
+        properties:
+          type:
+            type: string
+            enum:
+              - http
+              - dns
+          status:
+            type: string
+            enum:
+              - verified
+              - deleted
+              - unverified
+              - superseded
+              - missing_token
+            description: Verification Status of the Domain Claim
+  links:
+    type: object
+    description: Link to this Domain
+    $ref: ./LinkSelfModel.yaml

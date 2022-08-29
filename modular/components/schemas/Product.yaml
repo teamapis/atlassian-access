@@ -1,0 +1,30 @@
+type: object
+required:
+  - key
+  - name
+properties:
+  key:
+    type: string
+    enum:
+      - jira-software
+      - jira-service-desk
+      - jira-core
+      - jira-ops
+      - stride
+      - hipchat
+      - confluence
+      - bitbucket
+      - trello
+      - opsgenie
+      - statuspage
+    description: Unique key of the Product
+  name:
+    type: string
+    description: Name of the Product
+  url:
+    type: string
+    description: URL of the Product
+  last_active:
+    type: string
+    format: date-time
+    description: Last active date for a product

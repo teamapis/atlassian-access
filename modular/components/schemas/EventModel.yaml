@@ -1,0 +1,57 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+  - links
+properties:
+  id:
+    type: string
+    description: Unique identifier of the Event
+  type:
+    type: string
+    description: Type name of this object
+    enum:
+      - events
+  attributes:
+    type: object
+    description: Attributes of this object
+    required:
+      - time
+      - action
+      - actor
+      - context
+    properties:
+      time:
+        type: string
+        format: date-time
+        description: The date and time of the event
+      action:
+        type: string
+        description: Kind of Event. Complete list see `event-actions` API.
+      actor:
+        type: object
+        description: Actor is the User who performed this Event
+        $ref: ./EventActorModel.yaml
+      context:
+        type: array
+        description: >-
+          Describes one or more entities that the action was performed against.
+          This field describes the "what" of the event.
+        items:
+          $ref: ./EventObjectModel.yaml
+      container:
+        type: array
+        description: >-
+          Describes the location where the action was performed. This field
+          describes the "where" of the event.
+        items:
+          $ref: ./EventObjectModel.yaml
+      location:
+        type: object
+        description: Location from where the Actor performed the Event
+        $ref: ./EventLocationModel.yaml
+  links:
+    type: object
+    description: Link to this Event
+    $ref: ./LinkSelfModel.yaml

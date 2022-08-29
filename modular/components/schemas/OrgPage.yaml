@@ -1,0 +1,11 @@
+type: object
+properties:
+  data:
+    type: array
+    description: 0 or more values of `Org` are returned
+    items:
+      $ref: ./OrgModel.yaml
+  links:
+    type: object
+    $ref: ./LinkPageModel.yaml
+    description: Links for Pagination.

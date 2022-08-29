@@ -1,0 +1,7 @@
+type: object
+properties:
+  data:
+    type: array
+    description: 0 or more values of event actions are returned
+    items:
+      $ref: ./EventActionModel.yaml

@@ -1,0 +1,71 @@
+get:
+  tags:
+    - policies
+  operationId: getPolicies
+  summary: Get list of policies
+  description: Returns information about org policies
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the organization to query
+      required: true
+      schema:
+        type: string
+    - name: cursor
+      in: query
+      description: Sets the starting point for the page of results to return.
+      required: false
+      schema:
+        type: string
+    - name: type
+      in: query
+      description: Sets the type for the page of policies to return.
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/PolicyPage.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml
+post:
+  tags:
+    - policies
+  operationId: createPolicy
+  summary: Create a policy
+  description: Create a policy for an org
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the organization to create policy for
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/PolicyCreateInput.yaml
+  responses:
+    '202':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Policy.yaml
+    '400':
+      $ref: ../components/responses/Error.InvalidResource.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml

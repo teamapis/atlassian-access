@@ -1,0 +1,25 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+properties:
+  id:
+    type: string
+    description: Unique identifier of the event action object
+  type:
+    type: string
+    description: Type name of this object
+  attributes:
+    type: object
+    description: Attributes of this object
+    required:
+      - displayName
+      - groupDisplayName
+    properties:
+      displayName:
+        type: string
+        description: Display name of the event action
+      groupDisplayName:
+        type: string
+        description: Display name of the event action group

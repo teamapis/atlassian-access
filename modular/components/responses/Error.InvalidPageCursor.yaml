@@ -1,0 +1,6 @@
+description: Invalid page cursor
+content:
+  application/json:
+    schema:
+      type: object
+      $ref: ../schemas/Error.InvalidPageCursor.Model.yaml

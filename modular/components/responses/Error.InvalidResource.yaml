@@ -1,0 +1,5 @@
+description: Resource is not valid
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/Error.InvalidResource.Model.yaml

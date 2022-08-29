@@ -1,0 +1,99 @@
+put:
+  tags:
+    - policies
+  operationId: updatePolicyResource
+  summary: Update Policy Resource
+  description: Update an existing Policy Resource
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the organization to return
+      required: true
+      schema:
+        type: string
+    - name: policyId
+      in: path
+      description: ID of the policy to query
+      required: true
+      schema:
+        type: string
+    - name: resourceId
+      in: path
+      description: Resource ID
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ResourceUpdateInput.yaml
+  responses:
+    '202':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Policy.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '404':
+      description: Policy or organization not found
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: ../components/schemas/Error.PolicyNotFound.Model.yaml
+              - $ref: ../components/schemas/Error.OrgNotFound.Model.yaml
+              - $ref: ../components/schemas/Error.PolicyResourceNotFound.Model.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml
+delete:
+  tags:
+    - policies
+  operationId: deletePolicyResource
+  summary: Delete Policy Resource
+  description: Delete an existing Policy Resource
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the organization to return
+      required: true
+      schema:
+        type: string
+    - name: policyId
+      in: path
+      description: ID of the policy to query
+      required: true
+      schema:
+        type: string
+    - name: resourceId
+      in: path
+      description: Resource ID
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Policy.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '404':
+      description: Policy or organization not found
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: ../components/schemas/Error.PolicyNotFound.Model.yaml
+              - $ref: ../components/schemas/Error.OrgNotFound.Model.yaml
+              - $ref: ../components/schemas/Error.PolicyResourceNotFound.Model.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml

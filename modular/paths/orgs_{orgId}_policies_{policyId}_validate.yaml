@@ -1,0 +1,33 @@
+get:
+  tags:
+    - policies
+    - validate
+  summary: Validate Policy
+  description: >-
+    Validate a policy based on specific requirements. For example, Trigger CDEN
+    validation by pushing a task into the SQS dns-validation queue
+  operationId: validatePolicy
+  parameters:
+    - name: orgId
+      in: path
+      description: Organization ID
+      required: true
+      schema:
+        type: string
+    - name: policyId
+      in: path
+      description: Policy ID
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      description: Accepted CDEN policy validation request
+    '400':
+      $ref: ../components/responses/Error.CdenPolicyValidationFailed.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.CdenPolicyValidationFailed.yaml

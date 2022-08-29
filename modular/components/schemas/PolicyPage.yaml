@@ -1,0 +1,21 @@
+type: object
+properties:
+  data:
+    type: array
+    description: 0 or more values of Policy are returned
+    items:
+      $ref: ./PolicyModel.yaml
+  meta:
+    type: object
+    properties:
+      next:
+        type: string
+        nullable: true
+        description: Value for the next cursor
+      page_size:
+        type: integer
+        description: Number of items in a page
+  links:
+    type: object
+    $ref: ./LinkPageModel.yaml
+    description: Links for Pagination.

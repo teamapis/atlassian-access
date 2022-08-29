@@ -1,0 +1,36 @@
+get:
+  tags:
+    - domains
+  operationId: getDomains
+  summary: Get domains in an organization
+  description: Returns a list of domains in an organization one page at a time.
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the organization to query
+      required: true
+      schema:
+        type: string
+    - name: cursor
+      in: query
+      description: Sets the starting point for the page of results to return.
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/DomainPage.yaml
+    '400':
+      $ref: ../components/responses/Error.InvalidPageCursor.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '403':
+      $ref: ../components/responses/Error.NoPerms.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml

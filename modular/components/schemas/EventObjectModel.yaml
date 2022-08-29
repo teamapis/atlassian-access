@@ -1,0 +1,21 @@
+type: object
+required:
+  - id
+properties:
+  id:
+    type: string
+    description: Unique identifier of the event object
+  type:
+    type: string
+    description: Type name of this object
+  attributes:
+    type: object
+    description: Attributes of this object
+    additionalProperties: {}
+  links:
+    description: Links to this event object
+    anyOf:
+      - type: object
+        $ref: ./LinkSelfAltModel.yaml
+      - type: object
+        $ref: ./LinkAltModel.yaml

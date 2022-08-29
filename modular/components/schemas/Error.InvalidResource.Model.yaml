@@ -1,0 +1,14 @@
+type: object
+description: Resource is not valid
+properties:
+  errors:
+    type: array
+    items:
+      allOf:
+        - $ref: ./ApplicationError.yaml
+        - type: object
+          properties:
+            code:
+              type: string
+              enum:
+                - ADMIN-400-4

@@ -1,0 +1,66 @@
+get:
+  tags:
+    - events
+  operationId: getEvents
+  summary: Get an audit log of events
+  description: Returns an audit log of events from an organization one page at a time.
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the org
+      required: true
+      schema:
+        type: string
+    - name: cursor
+      in: query
+      description: Sets the starting point for the page of results to return
+      required: false
+      schema:
+        type: string
+    - name: q
+      in: query
+      description: Single query term for searching events.
+      required: false
+      schema:
+        type: string
+    - name: from
+      in: query
+      description: >-
+        The earliest date and time of the event represented as a UNIX epoch
+        time.
+      required: false
+      schema:
+        type: string
+    - name: to
+      in: query
+      description: The latest date and time of the event represented as a UNIX epoch time.
+      required: false
+      schema:
+        type: string
+    - name: action
+      in: query
+      description: A query filter that returns events of a specific action type.
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/EventPage.yaml
+    '400':
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: ../components/schemas/Error.InvalidPageCursor.Model.yaml
+              - $ref: ../components/schemas/Error.InvalidSearchTimeDate.Model.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml

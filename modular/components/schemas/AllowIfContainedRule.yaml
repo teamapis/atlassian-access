@@ -1,0 +1,9 @@
+type: object
+description: Applicable when policy type is `ip-allowlist` or `data-residency`
+required:
+  - in
+properties:
+  in:
+    type: array
+    items:
+      type: string

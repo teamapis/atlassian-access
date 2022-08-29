@@ -1,0 +1,8 @@
+type: object
+properties:
+  code:
+    type: number
+    description: The HTTP status code applicable to this error.
+  message:
+    type: string
+    description: Human-readable explanation of the error.

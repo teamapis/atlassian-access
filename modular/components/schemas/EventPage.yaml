@@ -1,0 +1,20 @@
+type: object
+properties:
+  data:
+    type: array
+    description: 0 or more values of Event are returned
+    items:
+      $ref: ./EventModel.yaml
+  meta:
+    type: object
+    properties:
+      next:
+        type: string
+        description: Value for the next cursor
+      page_size:
+        type: integer
+        description: Number of items in a page
+  links:
+    type: object
+    $ref: ./LinkPageModel.yaml
+    description: Links for Pagination.

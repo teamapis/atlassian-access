@@ -1,0 +1,88 @@
+openapi: 3.0.0
+info:
+  title: API for Atlassian Access
+  version: '1.0'
+security:
+  - bearerAuth: []
+paths:
+  /orgs:
+    $ref: paths/orgs.yaml
+  /orgs/{orgId}:
+    $ref: paths/orgs_{orgId}.yaml
+  /orgs/{orgId}/users:
+    $ref: paths/orgs_{orgId}_users.yaml
+  /orgs/{orgId}/domains:
+    $ref: paths/orgs_{orgId}_domains.yaml
+  /orgs/{orgId}/domains/{domainId}:
+    $ref: paths/orgs_{orgId}_domains_{domainId}.yaml
+  /orgs/{orgId}/events:
+    $ref: paths/orgs_{orgId}_events.yaml
+  /orgs/{orgId}/events/{eventId}:
+    $ref: paths/orgs_{orgId}_events_{eventId}.yaml
+  /orgs/{orgId}/event-actions:
+    $ref: paths/orgs_{orgId}_event-actions.yaml
+  /orgs/{orgId}/policies:
+    $ref: paths/orgs_{orgId}_policies.yaml
+  /orgs/{orgId}/policies/{policyId}:
+    $ref: paths/orgs_{orgId}_policies_{policyId}.yaml
+  /orgs/{orgId}/policies/{policyId}/resources:
+    $ref: paths/orgs_{orgId}_policies_{policyId}_resources.yaml
+  /orgs/{orgId}/policies/{policyId}/resources/{resourceId}:
+    $ref: paths/orgs_{orgId}_policies_{policyId}_resources_{resourceId}.yaml
+  /orgs/{orgId}/policies/{policyId}/validate:
+    $ref: paths/orgs_{orgId}_policies_{policyId}_validate.yaml
+servers:
+  - url: https://api.atlassian.com/admin/v1
+x-atlassian-narrative:
+  documents:
+    - title: About the organizations REST API
+      anchor: about
+      body: >-
+        Use this REST API to get details about organizations including their
+        users and domains.
+    - title: Authentication and authorization
+      anchor: auth
+      body: >-
+        To use the organizations REST API you must have a valid API key. The API
+        key protects the API
+
+        and ensures that you have permission to update and disable the accounts
+        owned by your organization.
+
+        You can use the same API key for the organizations REST API and the user
+        management REST API.
+
+        For more information, see [Create an API
+        key](https://confluence.atlassian.com/x/jPnJOQ).
+
+
+        Once you have your API key, you can provide it as a bearer token
+
+        in the `Authorization` part of your HTTPS header.
+    - title: Version and URI
+      anchor: uri
+      body: >-
+
+        This documentation is for version 1 of the organizations REST API. The
+        URIs for resources have the following structure:
+
+
+        ```
+
+        https://api.atlassian.com/admin/v1/orgs/<resource-name>
+
+        ```
+    - title: Pagination
+      anchor: Pagination
+      body: >-
+
+        The organizations REST API uses pagination to conserve server resources
+        and limit response size. If there are more results available after the
+        current page, a link to the next page of results is included in the
+        JSON. You can use the `cursor` parameter to set a specific starting
+        point for the results.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

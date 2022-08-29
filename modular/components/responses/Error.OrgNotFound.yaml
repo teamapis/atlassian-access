@@ -1,0 +1,6 @@
+description: Organization not found
+content:
+  application/json:
+    schema:
+      type: object
+      $ref: ../schemas/Error.OrgNotFound.Model.yaml

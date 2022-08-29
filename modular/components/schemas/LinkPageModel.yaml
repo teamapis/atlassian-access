@@ -1,0 +1,12 @@
+type: object
+description: Links for a Paginated response
+properties:
+  self:
+    type: string
+    description: URL to fetch this Page
+  prev:
+    type: string
+    description: URL to fetch the Previous Page
+  next:
+    type: string
+    description: URL to fetch the Next Page

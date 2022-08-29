@@ -1,0 +1,28 @@
+get:
+  tags:
+    - orgs
+  operationId: getOrgs
+  summary: Get organizations
+  description: Returns a list of your organizations (based on your API key).
+  parameters:
+    - name: cursor
+      in: query
+      description: Sets the starting point for the page of results to return.
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/OrgPage.yaml
+    '400':
+      $ref: ../components/responses/Error.InvalidPageCursor.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml

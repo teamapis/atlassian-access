@@ -1,0 +1,28 @@
+get:
+  tags:
+    - orgs
+  operationId: getOrgById
+  summary: Get an organization by ID
+  description: Returns information about a single organization by ID
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the organization to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Org.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '404':
+      $ref: ../components/responses/Error.OrgNotFound.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml

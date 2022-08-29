@@ -1,0 +1,11 @@
+type: object
+properties:
+  data:
+    type: array
+    description: 0 or more values of Domain are returned
+    items:
+      $ref: ./DomainModel.yaml
+  links:
+    type: object
+    $ref: ./LinkPageModel.yaml
+    description: Links for Pagination.

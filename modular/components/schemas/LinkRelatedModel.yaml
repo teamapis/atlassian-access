@@ -1,0 +1,7 @@
+type: object
+required:
+  - related
+properties:
+  related:
+    type: string
+    description: URL to fetch this resource

@@ -1,0 +1,125 @@
+get:
+  tags:
+    - policies
+  operationId: getPolicyById
+  summary: Get a policy by ID
+  description: Returns information about a single policy by ID
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the organization to return
+      required: true
+      schema:
+        type: string
+    - name: policyId
+      in: path
+      description: ID of the policy to query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Policy.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '404':
+      description: Policy or organization not found
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: ../components/schemas/Error.PolicyNotFound.Model.yaml
+              - $ref: ../components/schemas/Error.OrgNotFound.Model.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml
+put:
+  tags:
+    - policies
+  operationId: updatePolicy
+  summary: Update a policy
+  description: Update a policy for an org
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the organization to update policy for
+      required: true
+      schema:
+        type: string
+    - name: policyId
+      in: path
+      description: ID of the policy to update
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/PolicyUpdateInput.yaml
+  responses:
+    '202':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Policy.yaml
+    '400':
+      $ref: ../components/responses/Error.InvalidResource.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '404':
+      description: Policy or organization not found
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: ../components/schemas/Error.PolicyNotFound.Model.yaml
+              - $ref: ../components/schemas/Error.OrgNotFound.Model.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml
+delete:
+  tags:
+    - policies
+  operationId: deletePolicy
+  summary: Delete a policy
+  description: Delete a policy for an org
+  parameters:
+    - name: orgId
+      in: path
+      description: ID of the organization to create policy for
+      required: true
+      schema:
+        type: string
+    - name: policyId
+      in: path
+      description: ID of the policy to delete
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      description: Successful operation
+    '400':
+      $ref: ../components/responses/Error.InvalidResource.yaml
+    '401':
+      $ref: ../components/responses/Error.Unauthenticated.yaml
+    '404':
+      description: Policy or organization not found
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: ../components/schemas/Error.PolicyNotFound.Model.yaml
+              - $ref: ../components/schemas/Error.OrgNotFound.Model.yaml
+    '429':
+      $ref: ../components/responses/Error.RateLimited.yaml
+    '500':
+      $ref: ../components/responses/Error.InternalError.yaml
